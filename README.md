@@ -9,6 +9,8 @@ https://github.com/Bodmer/TFT_eSPI
 
 ## Usage
 
-Usage: ./jpeg2array jpeg_filename [options]
+```cmd
+./jpeg2array jpeg_filename [options]
 Options:
 --stm32         Generate array for stm32
+```
