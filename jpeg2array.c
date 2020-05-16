@@ -10,12 +10,12 @@
 #define ANSI_COLOR_RESET   "\x1b[0m"
 
 void logError(char* error) {
-  fprintf(stderr, ANSI_COLOR_RED "\nerror: " ANSI_COLOR_RESET "%s",
+  fprintf(stderr, ANSI_COLOR_RED "error: " ANSI_COLOR_RESET "%s",
     error);
 }
 
 void logInfo(char* info) {
-  fprintf(stdout, ANSI_COLOR_BLUE "\nlog: " ANSI_COLOR_RESET "%s",
+  fprintf(stdout, ANSI_COLOR_BLUE "log: " ANSI_COLOR_RESET "%s",
     info);
 }
 
@@ -26,6 +26,12 @@ void strUpper(char * temp) {
   }
 }
 
+void printUsage() {
+  printf("Convert jpeg image to C/C++ array for use with arduino (default) or stm32.\n");
+  printf("Usage: ./jpeg2array jpeg_filename [options]\n");
+  printf("Options:\n--stm32\t\tGenerate array for stm32\n");
+}
+
 int main(int argc, char *argv[]){
   FILE *jpegFile;
   FILE *arrayFile;
@@ -34,7 +40,9 @@ int main(int argc, char *argv[]){
   int mode = 0; // 0 - arduino, 1 - stm32
 
   if ((argc < 2) || (argc > 3)) {
-    printf("Usage: ./jpeg2array jpeg_filename [options]\nOptions:\n--stm32\t\tGenerate array for stm32\n");
+    if (argc > 3)
+      logError("Wrong number of arguments!\n");
+    printUsage();
     return 1;
   }
 
@@ -43,7 +51,7 @@ int main(int argc, char *argv[]){
       mode = 1;
     else {
       logError("Second argument is invalid!\n");
-      printf("Usage: ./jpeg2array jpeg_filename [options]\nOptions:\n--stm32\t\tGenerate array for stm32\n");
+      printUsage();
       return 1;
     }
   }
