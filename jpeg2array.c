@@ -27,9 +27,9 @@ void strUpper(char * temp) {
 }
 
 void printUsage() {
-  printf("Convert jpeg image to C/C++ array for use with arduino (default) or stm32.\n");
+  printf("Convert jpeg image to C/C++ array for use with microcontrollers\n");
   printf("Usage: ./jpeg2array jpeg_filename [options]\n");
-  printf("Options:\n--stm32\t\tGenerate array for stm32\n");
+  printf("Options:\n--stm32\t\tGenerate array for stm32 (default)\n--arduino\tGenerate array for arduino\n");
 }
 
 int main(int argc, char *argv[]){
@@ -37,7 +37,7 @@ int main(int argc, char *argv[]){
   FILE *arrayFile;
   unsigned char data;
   char line_len = 0;
-  int mode = 0; // 0 - arduino, 1 - stm32
+  int mode = 1; // 0 - arduino, 1 - stm32
 
   if ((argc < 2) || (argc > 3)) {
     if (argc > 3)
@@ -49,6 +49,8 @@ int main(int argc, char *argv[]){
   if (argc == 3) {
     if (strcmp(argv[2],"--stm32") == 0)
       mode = 1;
+    else if (strcmp(argv[2],"--arduino") == 0)
+      mode = 0;
     else {
       logError("Second argument is invalid!\n");
       printUsage();
