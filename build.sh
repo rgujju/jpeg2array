@@ -1,0 +1,1 @@
+gcc jpeg2array.c -o jpeg2array -Wall

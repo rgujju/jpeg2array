@@ -1,13 +1,17 @@
 # jpeg2array
-Convert jpeg images to C/C++ array for use with arduino. This tool creates a header file which needs to included in your program.
+
+Convert jpeg image to C/C++ array for use with microcontrollers.
+
+This tool creates a header file which needs to be included in your program.
 
 This can be used with the tft library by bodmer
 https://github.com/Bodmer/TFT_eSPI
 
-### Simple C file to convert jpeg image to array.
+## Usage
 
-# Usage 
-./jpeg2array name_of_file
-
-
-
+```cmd
+./jpeg2array jpeg_filename [options]
+Options:
+--stm32         Generate array for stm32 (default)
+--arduino       Generate array for arduino
+```
